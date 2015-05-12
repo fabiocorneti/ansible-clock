@@ -1,6 +1,5 @@
 #!/bin/bash
 export ANSIBLE_HOST_KEY_CHECKING=False
-export ANSIBLE_ROLES_PATH=..
 export VAGRANT_LOG=error
 PASSED=0
 FAILED=0

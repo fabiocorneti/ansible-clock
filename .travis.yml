@@ -1,0 +1,21 @@
+---
+language: python
+
+python: "2.7"
+
+env:
+  - ANSIBLE="ansible"
+  - ANSIBLE="ansible==1.8.4"
+  - ANSIBLE="ansible==1.9.1"
+
+install:
+  - pip install $ANSIBLE
+
+script:
+  - ansible-playbook -i tests/dummy.hosts --syntax-check tests/role.yml
+  - ansible-playbook -i tests/dummy.hosts --sudo -v --diff tests/role.yml
+  - >
+    ansible-playbook -i tests/dummy.hosts --sudo tests/role.yml
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)

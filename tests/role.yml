@@ -1,6 +1,7 @@
 - hosts: test
+  sudo: true
   roles:
-    - role: clock
+    - role: ../..
       clock_timezone: Europe/Rome
       clock_ntpd_enable: true
       clock_ntpd_servers:
@@ -11,4 +12,4 @@
 - hosts: test_invalid_timezone
   sudo: true
   roles:
-    - { role: clock, clock_timezone: 'Europe/Roma' }
+    - { role: ../.., clock_timezone: 'Europe/Roma' }
