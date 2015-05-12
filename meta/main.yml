@@ -1,0 +1,25 @@
+---
+galaxy_info:
+  author: Fabio Corneti
+  description: Ansible role to configure system clock
+  company: Fabio Corneti
+  license: MIT
+  min_ansible_version: 1.8
+  platforms:
+    - name: EL
+      versions:
+        - 6
+        - 7
+    - name: Ubuntu
+      versions:
+        - precise
+        - trusty
+    - name: Debian
+      versions:
+        - etch
+        - lenny
+        - squeeze
+        - wheezy
+  categories:
+    - system
+dependencies: []

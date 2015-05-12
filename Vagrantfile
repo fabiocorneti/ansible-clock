@@ -1,0 +1,80 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+API_VERSION = "2"
+
+Vagrant.configure(API_VERSION) do |config|
+
+  config.vm.define "invalid-tz" do |c|
+    c.vm.hostname = "invalid-tz"
+    c.vm.box = "chef/centos-7.0"
+    c.vm.provision "ansible" do |ansible|
+      ansible.playbook = "tests/role.yml"
+      ansible.sudo = true
+      ansible.groups = {
+        "test_invalid_timezone" => "invalid-tz"
+      }
+    end
+  end
+
+  config.vm.define "centos7" do |c|
+    c.vm.hostname = "centos7"
+    c.vm.box = "chef/centos-7.0"
+    c.vm.provision "ansible" do |ansible|
+      ansible.playbook = "tests/role.yml"
+      ansible.sudo = true
+      ansible.groups = {
+        "test" => "centos7"
+      }
+    end
+  end
+
+  config.vm.define "centos6" do |c|
+    c.vm.hostname = "centos6"
+    c.vm.box = "chef/centos-6.5"
+    c.vm.provision "ansible" do |ansible|
+      ansible.playbook = "tests/role.yml"
+      ansible.sudo = true
+      ansible.groups = {
+        "test" => "centos6"
+      }
+    end
+  end
+
+  config.vm.define "precise" do |c|
+    c.vm.hostname = "precise"
+    c.vm.box = "hashicorp/precise64"
+    c.vm.provision "ansible" do |ansible|
+      ansible.playbook = "tests/role.yml"
+      ansible.sudo = true
+      ansible.groups = {
+        "test" => "precise"
+      }
+    end
+  end
+
+  config.vm.define "trusty" do |c|
+    c.vm.hostname = "trusty"
+    c.vm.box = "ubuntu/trusty64"
+    c.vm.provision "ansible" do |ansible|
+      ansible.playbook = "tests/role.yml"
+      ansible.sudo = true
+      ansible.groups = {
+        "test" => "trusty"
+      }
+    end
+  end
+
+  config.vm.define "wheezy" do |c|
+    c.vm.hostname = "wheezy"
+    c.vm.box = "chef/debian-7.8"
+    c.vm.provision "ansible" do |ansible|
+      ansible.playbook = "tests/role.yml"
+      ansible.sudo = true
+      ansible.groups = {
+        "test" => "wheezy"
+      }
+    end
+  end
+
+end

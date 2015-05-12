@@ -1,0 +1,20 @@
+- name: Install the ntp package on RedHat
+  yum: name=ntp state=present
+  when: ansible_os_family == 'RedHat'
+
+- name: Install the ntp package on Debian
+  apt: name=ntp state=present
+  when: ansible_os_family == 'Debian'
+
+- name: Write ntpd configuration to /etc/ntp.conf
+  template: src=ntp.conf.j2 dest=/etc/ntp.conf
+  notify:
+    - Restart ntpd
+
+- debug: Restart ntpd if timezone changed
+  changed_when: clock_current_timezone != clock_timezone
+  notify:
+    - Restart ntpd
+
+- name: Ensure that ntpd is enabled and started
+  service: name={{ clock_ntpd_service }} enabled=true state=started

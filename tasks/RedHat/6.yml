@@ -1,0 +1,27 @@
+- name: Check if SELinux is enabled
+  command: getenforce
+  register: selinux_r
+  ignore_errors: true
+  changed_when: False
+
+- name: Install SELinux python bindings if SELinux is enabled
+  yum: name=libselinux-python state=present
+  when: selinux_r.stdout == 'Enforcing' or selinux_r.stdout == 'Permissive'
+
+- name: Get current timezone
+  command: grep -Po 'ZONE="\K(.+?)(?=")' /etc/sysconfig/clock
+  register: clock_current_timezone_r
+  changed_when: false
+
+- set_fact: clock_current_timezone={{ clock_current_timezone_r.stdout }}
+
+- name: Write timezone to /etc/sysconfig/clock
+  template: src=../templates/clock.j2 dest=/etc/sysconfig/clock
+  when: clock_current_timezone != clock_timezone
+
+- name: Update /etc/localtime
+  command: tzdata-update
+  when: clock_current_timezone != clock_timezone
+  notify:
+    - Sync hardware clock
+    - Show reboot hint

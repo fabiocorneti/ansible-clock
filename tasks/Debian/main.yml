@@ -1,0 +1,20 @@
+- name: Ensure that tzdata is installed
+  apt: pkg=tzdata state=present
+
+- name: Get current timezone
+  command: cat /etc/timezone
+  register: clock_current_timezone_r
+  changed_when: false
+
+- set_fact: clock_current_timezone={{ clock_current_timezone_r.stdout }}
+
+- name: Set timezone in system configuration
+  template: src=../templates/timezone.j2 dest=/etc/timezone
+  when: clock_current_timezone != clock_timezone
+
+- name: Update /etc/localtime
+  command: dpkg-reconfigure --frontend noninteractive tzdata
+  when: clock_current_timezone != clock_timezone
+  notify:
+    - Sync hardware clock
+    - Show reboot hint

@@ -1,0 +1,13 @@
+- name: Get current timezone
+  shell: "timedatectl | grep -Po 'Timezone: \\K(.+?)(?= \\(.*$)'"
+  register: clock_current_timezone_r
+  changed_when: false
+
+- set_fact: clock_current_timezone={{ clock_current_timezone_r.stdout }}
+
+- name: Set timezone
+  command: timedatectl set-timezone {{ clock_timezone }}
+  when: clock_current_timezone != clock_timezone
+  notify:
+    - Sync hardware clock
+    - Show reboot hint

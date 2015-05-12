@@ -1,0 +1,19 @@
+- name: Include OS specific variables
+  include_vars: '{{ ansible_os_family }}.yml'
+
+- stat: path='{{ clock_tz_dir }}{{ clock_timezone }}'
+  register: clock_tzfile_st
+
+- name: Check if specified timezone is available
+  fail: msg="The specified timezone is not available"
+  when: not clock_tzfile_st.stat.exists
+
+- include: RedHat/main.yml
+  when: ansible_os_family == 'RedHat'
+
+- include: Debian/main.yml
+  when: ansible_os_family == 'Debian'
+
+- include: ntp.yml
+  when: clock_ntpd_enable == true
+
