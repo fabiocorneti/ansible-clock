@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/fabiocorneti/ansible-clock.png)](https://travis-ci.org/fabiocorneti/ansible-clock.png)
+[![Build Status](https://travis-ci.org/fabiocorneti/ansible-clock.png)](https://travis-ci.org/fabiocorneti/ansible-clock)
 
 corneti.clock
 =============
