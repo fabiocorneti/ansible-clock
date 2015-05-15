@@ -1,5 +1,5 @@
 - name: Ensure that tzdata is installed
-  apt: pkg=tzdata state=present
+  apt: pkg=tzdata state=present update_cache=yes
 
 - name: Get current timezone
   command: cat /etc/timezone
