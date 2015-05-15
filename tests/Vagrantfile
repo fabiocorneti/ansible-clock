@@ -9,7 +9,7 @@ Vagrant.configure(API_VERSION) do |config|
     c.vm.hostname = "invalid-tz"
     c.vm.box = "chef/centos-7.0"
     c.vm.provision "ansible" do |ansible|
-      ansible.playbook = "tests/role.yml"
+      ansible.playbook = "role.yml"
       ansible.sudo = true
       ansible.groups = {
         "test_invalid_timezone" => "invalid-tz"
@@ -21,7 +21,7 @@ Vagrant.configure(API_VERSION) do |config|
     c.vm.hostname = "centos7"
     c.vm.box = "chef/centos-7.0"
     c.vm.provision "ansible" do |ansible|
-      ansible.playbook = "tests/role.yml"
+      ansible.playbook = "role.yml"
       ansible.sudo = true
       ansible.groups = {
         "test" => "centos7"
@@ -33,7 +33,7 @@ Vagrant.configure(API_VERSION) do |config|
     c.vm.hostname = "centos6"
     c.vm.box = "chef/centos-6.5"
     c.vm.provision "ansible" do |ansible|
-      ansible.playbook = "tests/role.yml"
+      ansible.playbook = "role.yml"
       ansible.sudo = true
       ansible.groups = {
         "test" => "centos6"
@@ -45,7 +45,7 @@ Vagrant.configure(API_VERSION) do |config|
     c.vm.hostname = "precise"
     c.vm.box = "hashicorp/precise64"
     c.vm.provision "ansible" do |ansible|
-      ansible.playbook = "tests/role.yml"
+      ansible.playbook = "role.yml"
       ansible.sudo = true
       ansible.groups = {
         "test" => "precise"
@@ -57,7 +57,7 @@ Vagrant.configure(API_VERSION) do |config|
     c.vm.hostname = "trusty"
     c.vm.box = "ubuntu/trusty64"
     c.vm.provision "ansible" do |ansible|
-      ansible.playbook = "tests/role.yml"
+      ansible.playbook = "role.yml"
       ansible.sudo = true
       ansible.groups = {
         "test" => "trusty"
@@ -69,7 +69,7 @@ Vagrant.configure(API_VERSION) do |config|
     c.vm.hostname = "wheezy"
     c.vm.box = "chef/debian-7.8"
     c.vm.provision "ansible" do |ansible|
-      ansible.playbook = "tests/role.yml"
+      ansible.playbook = "role.yml"
       ansible.sudo = true
       ansible.groups = {
         "test" => "wheezy"

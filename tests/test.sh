@@ -8,7 +8,7 @@ echo "[ansible test] - Bringing up vagrant hosts" >> test.log
 vagrant up --no-provision >> test.log 2>&1
 
 echo "[ansible test] - Syntax check" >> test.log
-ansible-playbook --syntax-check tests/role.yml -i tests/dummy.hosts >> test.log \
+ansible-playbook --syntax-check role.yml -i dummy.hosts >> test.log \
     && { ((PASSED++)); echo "[ansible test] - Syntax check: pass"; } \
     || { ((FAILED++)); echo "[ansible test] - Syntax check: fail"; }
 
