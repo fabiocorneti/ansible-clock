@@ -1,5 +1,7 @@
-Role Name
-=========
+[![Build Status](https://travis-ci.org/fabiocorneti/ansible-clock.png)](https://travis-ci.org/fabiocorneti/ansible-clock.png)
+
+corneti.clock
+=============
 
 An ansible role for setting the system timezone and configuring a local NTP client daemon.
 
