@@ -4,6 +4,9 @@ export VAGRANT_LOG=error
 PASSED=0
 FAILED=0
 
+echo "Running ansible tests"
+echo
+
 echo "[ansible test] - Bringing up vagrant hosts" >> test.log
 vagrant up --no-provision >> test.log 2>&1
 
@@ -32,4 +35,12 @@ if [ $FAILED -ne 0 ]; then
 fi
 
 echo
-echo "Ran $((PASSED + FAILED)) tests - Passed: $PASSED - Failed: $FAILED"
+echo "Ran $((PASSED + FAILED)) ansible tests - Passed: $PASSED - Failed: $FAILED"
+
+echo 
+echo "Running serverspec tests"
+echo
+
+rake spec
+
+#vagrant destroy -f
