@@ -1,3 +1,4 @@
 ---
 clock_timezone: UTC
 clock_hwclock_sync: false
+clock_ntpd_enable: false
