@@ -8,10 +8,10 @@
   fail: msg="The specified timezone is not available"
   when: not clock_tzfile_st.stat.exists
 
-- include: RedHat/main.yml
+- include: RedHat.yml
   when: ansible_os_family == 'RedHat'
 
-- include: Debian/main.yml
+- include: Debian.yml
   when: ansible_os_family == 'Debian'
 
 - include: ntp.yml

@@ -9,7 +9,7 @@
 - set_fact: clock_current_timezone={{ clock_current_timezone_r.stdout }}
 
 - name: Set timezone in system configuration
-  template: src=../templates/timezone.j2 dest=/etc/timezone
+  template: src=timezone.j2 dest=/etc/timezone
   when: clock_current_timezone != clock_timezone
 
 - name: Update /etc/localtime

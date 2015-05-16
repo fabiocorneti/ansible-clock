@@ -16,7 +16,7 @@
 - set_fact: clock_current_timezone={{ clock_current_timezone_r.stdout }}
 
 - name: Write timezone to /etc/sysconfig/clock
-  template: src=../templates/clock.j2 dest=/etc/sysconfig/clock
+  template: src=clock.j2 dest=/etc/sysconfig/clock
   when: clock_current_timezone != clock_timezone
 
 - name: Update /etc/localtime
