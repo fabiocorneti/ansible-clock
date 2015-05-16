@@ -3,16 +3,14 @@ language: python
 
 python:
   - "2.7"
-rvm:
-  - "2.2"
-gemfile:
-  - tests/Gemfile
 env:
   - ANSIBLE="ansible"
   - ANSIBLE="ansible==1.8.4"
   - ANSIBLE="ansible==1.9.1"
 
 install:
+  - sudo apt-get update
+  - sudo apt-get install -y ruby rake ruby-bundler
   - pip install $ANSIBLE
 
 script:
@@ -23,6 +21,6 @@ script:
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
-  - >
-    cd tests
-    rake local
+  - cd tests
+  - bundle
+  - rake local
