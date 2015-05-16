@@ -41,6 +41,6 @@ echo
 echo "Running serverspec tests"
 echo
 
-rake spec
+rake vagrant
 
 #vagrant destroy -f

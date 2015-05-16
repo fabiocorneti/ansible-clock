@@ -11,15 +11,23 @@ hosts = %w(
   wheezy
 )
 
-task :spec => 'spec:all'
+task :vagrant => 'vagrant:all'
 
-namespace :spec do
-  task :all => hosts.map {|h| 'spec:' + h.split('.')[0] }
+namespace :vagrant do
+  task :all => hosts.map {|h| 'vagrant:' + h.split('.')[0] }
   hosts.each do |host|
     desc "Run serverspec to #{host}"
     RSpec::Core::RakeTask.new(host) do |t|
       ENV['TARGET_HOST'] = host
       t.pattern = "spec/#{role}/*_spec.rb"
     end
+  end
+end
+
+task :local do
+  desc "Run serverspec to local host"
+  RSpec::Core::RakeTask.new('local') do |t|
+      ENV['TARGET_HOST'] = '.local'
+      t.pattern = "spec/#{role}/*_spec.rb"
   end
 end
