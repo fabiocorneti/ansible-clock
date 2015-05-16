@@ -9,7 +9,7 @@ Role Variables
 --------------
 
   * `clock_timezone` - the timezone to be set. Defaults to `UTC`
-  * `clock_ntpd_enable` - if set to `true`, installs and enables a local NTP client daemon. Defaults to `false`.
+  * `clock_ntpd_enable` - if set to `true`, installs and enables a local NTP client daemon. If set to `false`, will not stop or disable a running ntp daemon.
   * `clock_ntpd_servers` - the list of upstream NTP servers which will be used to keep the system clock in sync.
   * `clock_hwclock_sync` - if set, the hardware clock will be set to the current system time if the timezone is changed; valid values are `utc` or `localtime`. Defaults to `null`.
 
