@@ -11,8 +11,8 @@
   notify:
     - Restart ntpd
 
-- debug: Restart ntpd if timezone changed
-  changed_when: clock_current_timezone != clock_timezone
+- command: /bin/true
+  when: ansible_date_time.tz != clock_timezone
   notify:
     - Restart ntpd
 
