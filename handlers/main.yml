@@ -1,7 +1,5 @@
 - name: Sync hardware clock
   command: hwclock --systohc --{{ clock_hwclock_sync }}
   when: clock_hwclock_sync == 'utc' or clock_hwclock_sync == 'localtime'
-- name: Show reboot hint
-  debug: msg="Remember to reboot the host or restart daemons to finalize the timezone change."
 - name: Restart ntpd
   service: name={{ clock_ntpd_service }} state=restarted
