@@ -18,9 +18,6 @@ script:
   - ansible-playbook -i tests/dummy.hosts --sudo -v --diff tests/role.yml
   - >
     ansible-playbook -i tests/dummy.hosts --sudo tests/role.yml
-    | grep -q 'changed=0.*failed=0'
-    && (echo 'Idempotence test: pass' && exit 0)
-    || (echo 'Idempotence test: fail' && exit 1)
   - cd tests
   - bundle
   - rake local
