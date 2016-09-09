@@ -24,6 +24,7 @@ done
 for vm in "centos7" "centos6" "precise" "trusty" "wheezy"; do
     echo "[ansible test] - Provisioning vm $vm" >> test.log
     vagrant provision $vm >> test.log 2>&1
+    vagrant provision $vm
     vagrant provision $vm 2>&1 | tee -a test.log | grep -q 'changed=0.*unreachable=0.*failed=0' \
         && { ((PASSED++)); echo "[ansible test] - $vm idempotence: pass"; } \
         || { ((FAILED++)); echo "[ansible test] - $vm idempotence: fail"; }
