@@ -24,4 +24,3 @@
   when: clock_current_timezone != clock_timezone
   notify:
     - Sync hardware clock
-    - Show reboot hint

@@ -10,11 +10,9 @@
   when: (ansible_date_time.tz != clock_timezone) and ansible_service_mgr != 'systemd'
   notify:
     - Sync hardware clock
-    - Show reboot hint
 
 - name: Set timezone
   command: timedatectl set-timezone {{ clock_timezone }}
   when: (ansible_date_time.tz != clock_timezone) and ansible_service_mgr == 'systemd'
   notify:
     - Sync hardware clock
-    - Show reboot hint
